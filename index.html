@@ -460,7 +460,7 @@ const T3=['爸爸','妈妈','弟弟'],L3=['哥哥','妈妈','老师'];
 const VS=[
 {ic:'🍳',k:'who',dlg:1,p:['mom','rest','fri'],it:['🍲','🍱','🍳'],steps:[
 {q:1,ln:[['L','我喜欢吃饭。']]},{q:1,ln:[['L','你呢？']]},{q:1,ln:[['R','我也是啊，大家不都这样吗？']]},
-{ap:1,pics:2,ln:[['L','我喜欢吃我妈妈做的饭。']]},{pics:3,ln:[['L','在做饭的人是谁？']]}]},
+{ap:1,pics:2,ln:[['L','我喜欢吃我妈妈做的饭。']]},{ap:1,pics:3},{pics:3,ln:[['L','在做饭的人是谁？']]}]},
 {ic:'🥤',k:'boy',crowd:1,nodim:1,steps:[{q:1,cap:'那个人是谁？'}]}];
 const prep=sc=>{if(sc.crowd||sc.noprep)return;const S=sc.steps,out=[S[0]];let last=JSON.stringify(S[0].a);for(let k=1;k<S.length;k++){const a=JSON.stringify(S[k].a);if(a!==last){out.push({cap:S[0].cap,a:S[k].a,ap:1});last=a}out.push(S[k])}sc.steps=out};
 VS.forEach(prep);
