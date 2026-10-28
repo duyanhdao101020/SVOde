@@ -421,6 +421,29 @@ nav,.pick,.panel details{display:none!important}
 #pxbad.on{opacity:1}
 #pxbad .no{display:inline-block;font-size:1.5em;line-height:1;font-weight:900;color:#dc2626}
 #pxbad.on .no{animation:shake .5s .25s}
+
+/* ===== 越南语放大(上) + 英语(下) ===== */
+#pxeng .w,#pxg .w{font-size:1.65em;padding:.08em .45em;line-height:1.25}
+#pxeng .w small,#pxg .w small{font-size:.52em;font-weight:600;opacity:.85;margin-top:0;line-height:1.2}
+.pxc{gap:.5em}
+#pxg{margin-top:.35em}
+/* ===== 母语迁移 印章 ===== */
+#pxdk{position:fixed;inset:0;z-index:49;background:rgba(5,8,18,.9);opacity:0;pointer-events:none;transition:opacity .45s}
+#pxdk.show{opacity:1}
+#pxst{position:fixed;left:50%;top:50%;z-index:50;pointer-events:none;opacity:0;white-space:nowrap;font-weight:900;line-height:1;font-size:min(18vw,36vh);color:#ff2d2d;letter-spacing:.03em;padding:.1em .22em;border:.065em solid #ff2d2d;border-radius:.12em;transform:translate(-50%,-50%) rotate(-6deg);text-shadow:0 0 .22em rgba(255,45,45,.5);filter:url(#pxrough)}
+#pxst::after{content:"";position:absolute;inset:.07em;border:.02em solid #ff2d2d;border-radius:.08em}
+#pxst.on{opacity:1}
+#pxst.slam{animation:pxslam .65s both}
+@keyframes pxslam{
+0%{opacity:0;transform:translate(-50%,-50%) rotate(-6deg) scale(4);animation-timing-function:cubic-bezier(.7,0,1,.5)}
+52%{opacity:1;transform:translate(-50%,-50%) rotate(-6deg) scale(1)}
+60%{transform:translate(calc(-50% - 14px),calc(-50% + 10px)) rotate(-7.5deg) scale(1.07)}
+70%{transform:translate(calc(-50% + 11px),calc(-50% - 7px)) rotate(-5deg) scale(.97)}
+80%{transform:translate(calc(-50% - 6px),calc(-50% + 4px)) rotate(-6.4deg) scale(1.02)}
+100%{opacity:1;transform:translate(-50%,-50%) rotate(-6deg) scale(1)}}
+#pxfl{position:fixed;inset:0;z-index:51;background:#fff;opacity:0;pointer-events:none}
+#pxfl.go{animation:pxfl .45s .34s forwards}
+@keyframes pxfl{from{opacity:.75}to{opacity:0}}
 </style>
 </head>
 <body>
@@ -451,10 +474,12 @@ nav,.pick,.panel details{display:none!important}
 <div id="px"><div class="pxc">
 <div id="pxwhy"><svg class="warn" viewBox="0 0 100 90"><path d="M50 7L95 83H5Z" fill="#facc15" stroke="#111" stroke-width="7" stroke-linejoin="round"/><rect x="45" y="30" width="10" height="29" rx="4" fill="#111"/><circle cx="50" cy="71" r="6" fill="#111"/></svg><span class="h">外国学生为什么容易说错？</span></div>
 <div id="pxbad"><span>我喜欢吃<b class="c1">饭</b>的<b class="c2">我妈妈做</b></span><span class="no">✗</span></div>
-<div class="eng" id="pxeng"><span class="w b">I love eating<small>tôi thích ăn</small></span><span class="w c1" id="w1">food<small>cơm</small></span><span class="w g" id="wt">that<small>&nbsp;</small></span><span class="w c2" id="w2">my mom makes<small>mẹ nấu</small></span></div>
-<div class="eng" id="pxg"><span class="w b">I love eating<small>tôi thích ăn</small></span><span class="w c2" id="t2">my mom makes<small>mẹ nấu</small></span><span class="w c3" id="t3">的<small>的</small></span><span class="w c1" id="t1">food<small>cơm</small></span></div>
+<div class="eng" id="pxeng"><span class="w b">tôi thích ăn<small>I love eating</small></span><span class="w c1" id="w1">cơm<small>food</small></span><span class="w g" id="wt">&nbsp;<small>that</small></span><span class="w c2" id="w2">mẹ nấu<small>my mom makes</small></span></div>
+<div class="eng" id="pxg"><span class="w b">tôi thích ăn<small>I love eating</small></span><span class="w c2" id="t2">mẹ nấu<small>my mom makes</small></span><span class="w c3" id="t3">的<small>的</small></span><span class="w c1" id="t1">cơm<small>food</small></span></div>
 <div id="pxzh">我喜欢吃<b class="c2"><span class="wo">我</span>妈妈做</b>的<b class="c1">饭</b>。<span class="ok">✓</span></div>
 </div><svg id="pxsv"></svg></div>
+<div id="pxdk"></div><div id="pxst">母语迁移</div><div id="pxfl"></div>
+<svg width="0" height="0" style="position:absolute"><filter id="pxrough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="6" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
 <div id="ty"><div class="tyc"><div class="ty1" id="ty1"></div><div class="ty2">再见 <span class="wave">👋</span></div></div><div class="tyf" id="tyf"></div><div id="cf"></div></div>
 <div id="hd"><span></span></div>
 <div id="dots"></div>
@@ -502,7 +527,8 @@ function sfx(k){if(mute)return;try{AC=AC||new (window.AudioContext||window.webki
  else if(k==='heaven')heaven();else if(k==='lamp'){tone(110,0,.22,.25,'square');tone(70,.2,.35,.2,'square')}else if(k==='tick'){tone(660,0,.18,.08)}
  else if(k==='ok'){tone(660,0,.2,.15);tone(880,.12,.5,.15)}
  else if(k==='kick'){const o=AC.createOscillator(),g=AC.createGain(),n=AC.currentTime;o.frequency.setValueAtTime(230,n);o.frequency.exponentialRampToValueAtTime(45,n+.18);g.gain.setValueAtTime(.55,n);g.gain.exponentialRampToValueAtTime(.001,n+.24);o.connect(g);g.connect(AC.destination);o.start(n);o.stop(n+.26);tone(1100,0,.04,.14,'square')}
-  else if(k==='bad'){tone(180,0,.4,.15,'sawtooth')}}catch(e){}}
+  else if(k==='bad'){tone(180,0,.4,.15,'sawtooth')}
+  else if(k==='stamp'){const o=AC.createOscillator(),g=AC.createGain(),n=AC.currentTime;o.type='sine';o.frequency.setValueAtTime(150,n);o.frequency.exponentialRampToValueAtTime(30,n+.3);g.gain.setValueAtTime(.95,n);g.gain.exponentialRampToValueAtTime(.001,n+.5);o.connect(g);g.connect(AC.destination);o.start(n);o.stop(n+.52);tone(95,0,.12,.35,'square');tone(2200,0,.05,.12,'square')}}catch(e){}}
 const kd=(s,S)=>s.ap?(S&&S.crowd&&S.k==='boy'?'heaven':'appear'):s.f?'ding':'tick';
 const PH=(u,k)=>`<div class="ph2"><div class="bsvg">${KB[k]}</div><div class="ph pp" style="opacity:0"><img class="photo" src="${u}" alt=""><span class="sp" style="opacity:0">✨</span></div></div>`;
 const body=(S,j)=>S.photos?`<img class="ph3 pp" style="opacity:0" alt="" src="${S.photos[j]}"><div class="bagE">🎒</div>`:S.img&&S.img[j]?PH(S.img[j],S.k):S.k==='who'?who(S.p[j],S.it[j],S.hid):S.k==='org'?`<div class="ow pp" style="opacity:0">${S.ow[j]}</div><div class="oi">${S.it[j]}</div>`:KB[S.k];
@@ -649,7 +675,7 @@ addEventListener('resize',fit);fit();
    if(anim&&k===0){sfx('bad');pxT.push(setTimeout(()=>eng.classList.add('on'),900))}else eng.classList.add('on');
    if(k>=1){if(anim&&k===1)pxT.push(setTimeout(()=>{bad.classList.add('on');sfx('bad')},1000));else bad.classList.add('on')}
    if(k<2)return;g.classList.add('on');
-   if(!anim){$$('#pxg .w').forEach(e=>e.style.visibility='visible');zh.classList.add('on');pxT.push(setTimeout(PX.lines,900));return}
+   if(!anim||k>=3){$$('#pxg .w').forEach(e=>e.style.visibility='visible');zh.classList.add('on');if(k>=3)PX.lines();else pxT.push(setTimeout(PX.lines,900));return}
    const fly=(src,tgt,delay,dur,n)=>pxT.push(setTimeout(()=>{const S=$('#'+src),a=S.getBoundingClientRect(),b=$('#'+tgt).getBoundingClientRect(),el=S.cloneNode(true);el.removeAttribute('id');el.classList.add('fly');
      el.style.cssText=`left:${a.left}px;top:${a.top}px`;pxo.append(el);
      const dx=b.left-a.left,dy=b.top-a.top,kf=[{offset:0,transform:'none'}];
@@ -658,6 +684,10 @@ addEventListener('resize',fit);fit();
    fly('w1','t1',200,2800,4);fly('w2','t2',1500,2800,4);
    pxT.push(setTimeout(()=>{const t=$('#t3');t.style.visibility='visible';t.animate([{transform:'translateY(-6em)',opacity:0},{transform:'none',opacity:1,offset:.55},{transform:'translateY(-.8em)',offset:.75},{transform:'none'}],{duration:1100});sfx('tick')},4500));
    pxT.push(setTimeout(()=>{PX.lines();zh.classList.add('on');sfx('ding')},5900))}};
+ PX.stamp=(on,anim)=>{const dk=$('#pxdk'),st=$('#pxst'),fl=$('#pxfl');clearTimeout(PX.sT);
+  if(!on){dk.classList.remove('show');st.className='';fl.className='';return}
+  dk.classList.add('show');
+  if(anim){st.className='';fl.className='';void st.offsetWidth;st.className='on slam';fl.className='go';PX.sT=setTimeout(()=>sfx('stamp'),340)}else{st.className='on';fl.className=''}};
  // 时间线
  const TL=[],T=o=>TL.push(o);
  ['c0','c1','c2','c3'].forEach(k=>T({p:'pc',k,key:k}));
@@ -665,7 +695,7 @@ addEventListener('resize',fit);fit();
  for(let k=0;k<=8;k++)T({p:'ga',step:k,key:k?'ga':'ga0'});
  VS[0].steps.forEach((_,k)=>T({p:'p1',scene:0,step:k,key:'p1:0'}));
  for(let k=0;k<4;k++)T({p:'gb',step:k,key:k?'gb':'gb0'});
- [0,1,2].forEach(k=>T({p:'px',step:k,key:'px'}));
+ [0,1,2,3].forEach(k=>T({p:'px',step:k,key:'px'}));
  ['appear','fly','land','vanish'].forEach(k=>T({p:'pc',k,key:'fl'}));
  [0,1,2,3].forEach(k=>{T({p:'pc',k:'spot'+k,key:k?'sp':'spot'});if(k===0)T({p:'pc',k:'spot0a',key:'sp'})});
  T({p:'pc',k:'full',key:'full'});
@@ -681,7 +711,7 @@ addEventListener('resize',fit);fit();
   i=Math.max(0,Math.min(TL.length-1,i));const e=TL[i],adv=i===cur.i+1,fwd=i>cur.i;
   $('#p1-err').classList.remove('show');$('#menu').classList.remove('show');
   [['pc',pc,e.p==='pc'],['ga',ga,e.p==='ga'],['gb',gb,e.p==='gb'||e.p==='px'],['px',pxo,e.p==='px']].forEach(([k,el,v])=>el.classList.toggle('show',v));
-  ty.classList.toggle('show',e.k==='thanks');
+  ty.classList.toggle('show',e.k==='thanks');PX.stamp(e.p==='px'&&e.step>=3,adv);
   {const sec=e.p==='pc'?(/^c\d$/.test(e.k)?'a':e.k==='thanks'?'':'c'):(e.p==='p6'||e.p==='ga')?'a':(e.p==='p1'||e.p==='gb'||e.p==='px')?'b':'c',hd=$('#hd');
    if(sec)hd.firstChild.textContent={a:'复习 + 导入',b:'讲解 + 例子',c:'练习'}[sec];
    hd.className=sec?'show'+(sec==='c'?' big':''):''}
